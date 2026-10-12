@@ -1,0 +1,61 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: dbtool
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dbtool?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
+      password:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+# MyBatis-Plus
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+
+# Sa-Token（独立运行采用简易模式，所有接口放行；如需鉴权请自行扩展）
+sa-token:
+  token-name: Authorization
+  timeout: 86400
+  is-concurrent: true
+  is-share: false
+  token-style: uuid
+  is-log: false
+
+# dbtool 业务自定义配置
+dbtool:
+  # AES 加密密钥（长度必须为 16/24/32 字节；生产环境务必替换）
+  crypto:
+    key: dbtool-opensource-aes-key
+  # 备份文件目录
+  backup:
+    dir: ./dbtool_backups
+    mysql-home:
+    retention-days: 30
+    max-keep: 20
+  ai:
+    allow-conns:
+    audit-retention-days: 90
+    audit-max-rows: 10000
+
+logging:
+  level:
+    root: info
+    pan.dromara.dbtool: info
