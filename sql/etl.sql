@@ -70,13 +70,3 @@ CREATE TABLE IF NOT EXISTS etl_job_log (
     create_time   DATETIME     DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (id)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COMMENT ='ETL任务执行日志';
-
--- 3. 菜单（一级：数据集成ETL；子级：同步任务、执行日志）
-INSERT IGNORE INTO sys_menu (menu_id, menu_name, parent_id, order_num, path, component, query_param, is_frame, is_cache, menu_type, visible, status, perms, icon, create_dept, create_by, create_time, remark)
-VALUES (1761400000000030000, '数据集成ETL', 0, 8, 'etl', '', '', 'Y', 'Y', 'M', '0', '0', '', 'download', 103, 1, sysdate(), '数据集成ETL目录');
-
-INSERT IGNORE INTO sys_menu (menu_id, menu_name, parent_id, order_num, path, component, query_param, is_frame, is_cache, menu_type, visible, status, perms, icon, create_dept, create_by, create_time, remark)
-VALUES (1761400000000030001, '同步任务', 1761400000000030000, 1, 'job', 'etl/job/index', '', 'Y', 'Y', 'C', '0', '0', 'etl:job:list', 'job', 103, 1, sysdate(), 'ETL同步任务管理');
-
-INSERT IGNORE INTO sys_menu (menu_id, menu_name, parent_id, order_num, path, component, query_param, is_frame, is_cache, menu_type, visible, status, perms, icon, create_dept, create_by, create_time, remark)
-VALUES (1761400000000030002, '执行日志', 1761400000000030000, 2, 'log', 'etl/log/index', '', 'Y', 'Y', 'C', '0', '0', 'etl:log:list', 'log', 103, 1, sysdate(), 'ETL执行日志');
